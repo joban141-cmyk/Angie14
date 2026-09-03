@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#083344">
+  <title>透析工作流程輔助系統</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">HD WORKFLOW</p><h1>透析工作流程</h1></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+  <div class="safety">⚠️ 此為工作流程輔助工具，不取代醫囑、院內 SOP 或臨床判斷。請勿輸入姓名、病歷號、生日等個人資料。</div>
+  <main>
+    <section class="dashboard panel">
+      <div class="section-head"><div><p class="eyebrow">全床總覽</p><h2>下一件工作</h2></div><div class="actions"><button id="notifyBtn" class="secondary">🔔 啟用提醒</button><button id="addBedBtn">＋ 新增床位</button></div></div>
+      <div id="nextHero" class="next-hero empty">目前沒有進行中的透析</div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+    <section><div class="section-head"><div><p class="eyebrow">ACTIVE SESSIONS</p><h2>床位管理</h2></div><span id="bedCount" class="pill">0 床</span></div><div id="beds" class="bed-grid"></div></section>
+  </main>
+
+  <dialog id="bedDialog"><form id="bedForm" method="dialog"><div class="modal-head"><h2>新增床位</h2><button type="button" class="icon" data-close="bedDialog">×</button></div>
+    <label>床號／機台代碼<input id="bedName" required maxlength="20" placeholder="例如：05床"></label>
+    <div class="form-row"><label>開始時間<input id="startTime" type="time" required></label><label>透析時長（小時）<input id="duration" type="number" min="0.5" max="12" step="0.25" value="4" required></label></div>
+    <fieldset><legend>此次透析使用藥物（可複選）</legend><div id="medOptions" class="check-grid"></div></fieldset>
+    <div class="modal-actions"><button type="button" class="secondary" data-close="bedDialog">取消</button><button value="default">開始建立</button></div>
+  </form></dialog>
+
+  <dialog id="recordDialog"><form id="recordForm" method="dialog"><div class="modal-head"><div><p class="eyebrow" id="recordBed"></p><h2 id="recordTitle">新增生命徵象</h2></div><button type="button" class="icon" data-close="recordDialog">×</button></div>
+    <input type="hidden" id="recordBedId"><input type="hidden" id="recordType">
+    <div class="form-row three"><label>時間<input id="recordTime" type="time" required></label><label>體溫 ℃<input id="temp" type="number" step="0.1" min="25" max="45"></label><label>心跳 /min<input id="pulse" type="number" min="20" max="250"></label></div>
+    <div class="form-row three"><label>呼吸 /min<input id="resp" type="number" min="5" max="80"></label><label>收縮壓<input id="sbp" type="number" min="40" max="300"></label><label>舒張壓<input id="dbp" type="number" min="20" max="200"></label></div>
+    <fieldset><legend>低血壓相關症狀（可複選）</legend><div id="symptomOptions" class="check-grid"></div><label class="full">其他症狀<input id="otherSymptom" maxlength="120" placeholder="可留白"></label></fieldset>
+    <fieldset id="treatmentField"><legend>處置（可複選）</legend><div id="treatmentOptions" class="check-grid"></div><label class="full">其他處置<input id="otherTreatment" maxlength="120" placeholder="可留白"></label></fieldset>
+    <label>備註<textarea id="notes" rows="2" maxlength="300" placeholder="請勿輸入可識別個資"></textarea></label>
+    <div class="modal-actions"><button type="button" class="secondary" data-close="recordDialog">取消</button><button value="default">儲存紀錄</button></div>
+  </form></dialog>
+
+  <dialog id="endDialog"><form id="endForm" method="dialog"><div class="modal-head"><h2>提前結束透析</h2><button type="button" class="icon" data-close="endDialog">×</button></div><input type="hidden" id="endBedId"><p>結束後會取消該床尚未到時的提醒。</p><label>實際結束時間<input id="actualEnd" type="time" required></label><div class="modal-actions"><button type="button" class="secondary" data-close="endDialog">取消</button><button class="danger" value="default">確認結束</button></div></form></dialog>
+  <div id="toast" role="status" aria-live="assertive"></div>
+  <script src="app.js"></script>
+</body>
+</html>
