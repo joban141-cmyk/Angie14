@@ -3,5 +3,6 @@
 .calculated.highlight output{font-size:1.25rem}
 .dialog-note{color:var(--muted);font-size:.88rem;line-height:1.55}
 .patient-actions{flex-wrap:wrap}.patient-actions button{min-width:105px}
+.flow-label{display:inline-block;color:#c62828;font-weight:950;font-family:Inter,"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:.8rem;white-space:nowrap;margin-left:4px}
 @media(max-width:780px){.form-grid.three{grid-template-columns:1fr 1fr}.form-grid.three .highlight{grid-column:1/-1}}
 @media(max-width:430px){.form-grid.three{grid-template-columns:1fr}.form-grid.three .highlight{grid-column:auto}}
