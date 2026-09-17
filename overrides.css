@@ -9,3 +9,21 @@
 .clinical-note strong{display:block;font-size:.95rem;margin-bottom:5px}.clinical-note p{margin:3px 0}.clinical-note .pressure-note{color:#9a3412;font-weight:850}.clinical-note ol{margin:7px 0 0;padding-left:1.3rem}.clinical-note li{margin:2px 0}
 @media(max-width:780px){.form-grid.three{grid-template-columns:1fr 1fr}.form-grid.three .highlight{grid-column:1/-1}}
 @media(max-width:430px){.form-grid.three{grid-template-columns:1fr}.form-grid.three .highlight{grid-column:auto}}
+
+/* Mobile containment: keep every patient card inside the viewport. */
+.patients,.patient-track,.patient-card,.patient-head,.patient-body,.timeline-block,.time-row,.weight-summary{min-width:0;max-width:100%}
+.time-row{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.weight-summary strong,.patient-head h3,.med-alert{overflow-wrap:anywhere;word-break:break-word}
+@media(max-width:780px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .patients{width:100%;overflow:hidden}
+  .patient-track{width:100%;grid-auto-columns:100%;padding-right:0}
+  .patient-card{width:100%;max-width:100%;overflow:hidden}
+  .patient-head{gap:10px}.patient-head>div:first-child{min-width:0;flex:1}.patient-head .end-time{flex:0 0 auto}
+  .patient-body>*{min-width:0;max-width:100%}
+  .patient-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;gap:8px}
+  .patient-actions button{width:100%;min-width:0;padding-inline:8px}
+  .patient-actions button:last-child{grid-column:1/-1}
+  .weight-summary strong{font-size:.95rem}
+}
+@media(max-width:380px){.patient-body{padding-inline:12px}.patient-head{padding-inline:14px}.patient-head h3{font-size:1.25rem}.patient-head .end-time strong{font-size:1.1rem}}
