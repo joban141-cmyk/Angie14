@@ -1,0 +1,7 @@
+.form-grid.three{grid-template-columns:repeat(3,1fr)}
+.calculated.highlight{background:#dff7f2;border:1px solid #91d9cf}
+.calculated.highlight output{font-size:1.25rem}
+.dialog-note{color:var(--muted);font-size:.88rem;line-height:1.55}
+.patient-actions{flex-wrap:wrap}.patient-actions button{min-width:105px}
+@media(max-width:780px){.form-grid.three{grid-template-columns:1fr 1fr}.form-grid.three .highlight{grid-column:1/-1}}
+@media(max-width:430px){.form-grid.three{grid-template-columns:1fr}.form-grid.three .highlight{grid-column:auto}}
